@@ -1,0 +1,15 @@
+<h2>Edit Task</h2>
+
+<form method="POST">
+    <input type="text" name="task" value="{{ task.task }}" required>
+
+    <select name="priority">
+        <option value="high" {% if task.priority == "high" %}selected{% endif %}>High</option>
+        <option value="medium" {% if task.priority == "medium" %}selected{% endif %}>Medium</option>
+        <option value="low" {% if task.priority == "low" %}selected{% endif %}>Low</option>
+    </select>
+
+    <button type="submit">Update</button>
+</form>
+
+<a href="/">Back</a>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TaskFlow</title>
+</head>
+<body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <h2>TaskFlow - Task Manager</h2>
+
+     <form method="POST">
+        <input type="text" name="task" placeholder="Enter task" required>
+
+        <select name="priority">
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+
+        <button type="submit">Add</button>
+      
+     </form>
+
+    <ul>
+        {% for task in tasks %}
+         <li class="{{ task.priority }}">
+           {% if task.completed %}
+           <s>{{ task.task }}</s>
+           {% else %}
+           {{ task.task }}
+           {% endif %}
+
+           ({{ task.priority }})
+
+           <a href="/complete/{{ task._id }}">✅</a>
+           <a href="/edit/{{ task._id }}">✏️</a>
+           <a href="/delete/{{ task._id }}">❌</a>
+           
+         </li>
+    
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
